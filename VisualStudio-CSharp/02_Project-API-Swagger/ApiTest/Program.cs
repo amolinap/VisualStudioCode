@@ -1,4 +1,13 @@
+using ApiTest;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+builder.Services.AddDbContext<DataContext>(
+    option => option.UseSqlite(connectionString)
+);
 
 // Add services to the container.
 builder.Services.AddControllers();
