@@ -14,11 +14,11 @@ https://download.visualstudio.microsoft.com/download/pr/d6b3fe61-3c0e-45da-9e37-
 https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.403-macos-x64-installer
 
 <center>
-	<img src="Images/Instalar_SDK_01.png" width="500">
+	<img src="../Images/Instalar_SDK_01.png" width="500">
 </center>
 
 <center>
-	<img src="Images/Instalar_SDK_02.png" width="500">
+	<img src="../Images/Instalar_SDK_02.png" width="500">
 </center>
 
 ### Setting Up a .NET Project on macOS 
@@ -26,7 +26,7 @@ https://dotnet.microsoft.com/en-us/download/dotnet/thank-you/sdk-8.0.403-macos-x
 [Setting Up a .NET Project on macOS](https://dev.to/rusydy/setting-up-a-net-project-on-macos-590m)
 
 <center>
-	<img src="Images/Instalar_SDK_03.png" width="500">
+	<img src="../Images/Instalar_SDK_03.png" width="500">
 </center>
 
 Step 1: Verify .NET Core Installation
@@ -168,16 +168,14 @@ Time Elapsed 00:00:06.07
 dotnet run
 
 Building...
-warn: Microsoft.AspNetCore.DataProtection.KeyManagement.XmlKeyManager[35]
-      No XML encryptor configured. Key {5ea5fb0d-291c-48d2-8cf5-fa945fae32c0} may be persisted to storage in unencrypted form.
 info: Microsoft.Hosting.Lifetime[14]
-      Now listening on: http://localhost:5006
+      Now listening on: http://localhost:5109
 info: Microsoft.Hosting.Lifetime[0]
       Application started. Press Ctrl+C to shut down.
 info: Microsoft.Hosting.Lifetime[0]
       Hosting environment: Development
 info: Microsoft.Hosting.Lifetime[0]
-      Content root path: /Users/dav-29/MisDocumentos/GitRepositorios/VisualStudioCode/VisualStudio-CSharp/01_Project-MVC/MVCApp
+      Content root path: /Users/nautilus/MisDocumentos/GitRepositorios/VisualStudioCode/VisualStudio-CSharp/00_Project-WebApi/RestApi
 warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
       Failed to determine the https port for redirect.
 ```
@@ -185,7 +183,7 @@ warn: Microsoft.AspNetCore.HttpsPolicy.HttpsRedirectionMiddleware[3]
 #### Now listening on: http://localhost:5006
       
 <center>
-	<img src="Images/MVC_01.png" width="500">
+	<img src="../Images/APIRest.png" width="500">
 </center>
 
 ### Videos
