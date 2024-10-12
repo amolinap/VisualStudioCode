@@ -12,5 +12,7 @@ namespace ApiTest
         }
 
         public DbSet<Producto> Productos {get; set;}
+
+        public DbSet<Venta> Ventas {get; set;}
     }
 }

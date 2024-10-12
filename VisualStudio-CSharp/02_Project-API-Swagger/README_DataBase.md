@@ -6,7 +6,11 @@
 	<img src="../Images/Swagger_01.png" width="500">
 </center>
 
-### dotnet ef migrations
+### Migraciones
+
+https://medium.com/@rvazquezmiguel/migraciones-con-entity-framework-core-3ae6379b1ca8
+
+#### dotnet ef migrations
 
 El comando dotnet ef migrations add de Entity Framework Core (EF Core) agrega una nueva migración a un proyecto: 
 
@@ -16,15 +20,15 @@ El comando dotnet ef migrations add de Entity Framework Core (EF Core) agrega un
 
 Las migraciones son una herramienta que permite actualizar el esquema de la base de datos de forma incremental para que esté sincronizado con el modelo de datos de la aplicación. Esto es útil cuando se implementan nuevas funciones, como la adición o eliminación de entidades o propiedades. 
 
-### dotnet ef database update
+#### dotnet ef database update
 
 Actualiza la base de datos a la última migración o a una específica
 
-### dotnet ef database drop
+#### dotnet ef database drop
 
 Elimina la base de datos
 
-### dotnet ef migrations remove
+#### dotnet ef migrations remove
 
 El comando **dotnet ef migrations remove** sirve para eliminar una migración y garantizar que la instantánea se restablezca correctamente. 
 
