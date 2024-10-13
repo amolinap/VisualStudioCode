@@ -50,5 +50,19 @@ namespace ApiTest.Controllers
 
             return new CreatedAtRouteResult("GetProducto", new {id=producto.Id_Pro}, producto);
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult> Put(int id, Producto producto)
+        {
+            if(id != producto.Id_Pro)
+            {
+                return BadRequest();
+            }
+
+            _context.Entry(producto).State = EntityState.Modified;
+            await _context.SaveChangesAsync();
+
+            return Ok();
+        }
     }
 }

@@ -5,22 +5,22 @@
 namespace ApiTest.Migrations
 {
     /// <inheritdoc />
-    public partial class DetalleVentaUpdate : Migration
+    public partial class PostgreSQLUpdate : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_Productos_DetalleVenta_DetalleVentaId_Det",
-                table: "Productos");
+                name: "FK_DetalleVenta_Productos_Id_Pro",
+                table: "DetalleVenta");
 
             migrationBuilder.DropIndex(
-                name: "IX_Productos_DetalleVentaId_Det",
-                table: "Productos");
+                name: "IX_DetalleVenta_Id_Pro",
+                table: "DetalleVenta");
 
             migrationBuilder.DropColumn(
-                name: "DetalleVentaId_Det",
-                table: "Productos");
+                name: "Id_Pro",
+                table: "DetalleVenta");
 
             migrationBuilder.AddColumn<int[]>(
                 name: "Productos",
@@ -38,22 +38,24 @@ namespace ApiTest.Migrations
                 table: "DetalleVenta");
 
             migrationBuilder.AddColumn<int>(
-                name: "DetalleVentaId_Det",
-                table: "Productos",
+                name: "Id_Pro",
+                table: "DetalleVenta",
                 type: "integer",
-                nullable: true);
+                nullable: false,
+                defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_Productos_DetalleVentaId_Det",
-                table: "Productos",
-                column: "DetalleVentaId_Det");
+                name: "IX_DetalleVenta_Id_Pro",
+                table: "DetalleVenta",
+                column: "Id_Pro");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_Productos_DetalleVenta_DetalleVentaId_Det",
-                table: "Productos",
-                column: "DetalleVentaId_Det",
-                principalTable: "DetalleVenta",
-                principalColumn: "Id_Det");
+                name: "FK_DetalleVenta_Productos_Id_Pro",
+                table: "DetalleVenta",
+                column: "Id_Pro",
+                principalTable: "Productos",
+                principalColumn: "Id_Pro",
+                onDelete: ReferentialAction.Cascade);
         }
     }
 }

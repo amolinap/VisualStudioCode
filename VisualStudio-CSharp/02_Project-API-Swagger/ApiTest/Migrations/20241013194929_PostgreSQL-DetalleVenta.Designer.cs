@@ -11,8 +11,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiTest.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20241013001639_DetalleVentaUpdate")]
-    partial class DetalleVentaUpdate
+    [Migration("20241013194929_PostgreSQL-DetalleVenta")]
+    partial class PostgreSQLDetalleVenta
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -32,16 +32,17 @@ namespace ApiTest.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Det"));
 
-                    b.Property<int[]>("Productos")
-                        .IsRequired()
-                        .HasColumnType("integer[]");
+                    b.Property<int>("Id_Pro")
+                        .HasColumnType("integer");
 
-                    b.Property<int>("VentaId_Ven")
+                    b.Property<int>("Id_Ven")
                         .HasColumnType("integer");
 
                     b.HasKey("Id_Det");
 
-                    b.HasIndex("VentaId_Ven");
+                    b.HasIndex("Id_Pro");
+
+                    b.HasIndex("Id_Ven");
 
                     b.ToTable("DetalleVenta");
                 });
@@ -54,7 +55,7 @@ namespace ApiTest.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Pro"));
 
-                    b.Property<string>("NumControl")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -94,11 +95,19 @@ namespace ApiTest.Migrations
 
             modelBuilder.Entity("ApiTest.DetalleVenta", b =>
                 {
-                    b.HasOne("ApiTest.Venta", "Venta")
+                    b.HasOne("ApiTest.Producto", "Producto")
                         .WithMany()
-                        .HasForeignKey("VentaId_Ven")
+                        .HasForeignKey("Id_Pro")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+
+                    b.HasOne("ApiTest.Venta", "Venta")
+                        .WithMany()
+                        .HasForeignKey("Id_Ven")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Producto");
 
                     b.Navigation("Venta");
                 });

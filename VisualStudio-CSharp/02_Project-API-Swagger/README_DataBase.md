@@ -10,7 +10,7 @@
 
 https://medium.com/@rvazquezmiguel/migraciones-con-entity-framework-core-3ae6379b1ca8
 
-#### dotnet ef migrations
+#### dotnet ef migrations add
 
 El comando dotnet ef migrations add de Entity Framework Core (EF Core) agrega una nueva migración a un proyecto: 
 

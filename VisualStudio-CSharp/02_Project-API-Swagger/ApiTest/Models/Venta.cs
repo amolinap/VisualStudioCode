@@ -6,6 +6,13 @@ namespace ApiTest
 {
     public class Venta
     {
+        public Venta()
+        {
+            Id_Ven = 0;
+            Total = 0.0;
+            Status = 1;
+        }
+
         [Key]
         public int Id_Ven { get; set; }
 

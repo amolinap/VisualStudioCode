@@ -29,16 +29,16 @@ namespace ApiTest.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Det"));
 
+                    b.Property<int>("Id_Ven")
+                        .HasColumnType("integer");
+
                     b.Property<int[]>("Productos")
                         .IsRequired()
                         .HasColumnType("integer[]");
 
-                    b.Property<int>("VentaId_Ven")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id_Det");
 
-                    b.HasIndex("VentaId_Ven");
+                    b.HasIndex("Id_Ven");
 
                     b.ToTable("DetalleVenta");
                 });
@@ -51,7 +51,7 @@ namespace ApiTest.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Pro"));
 
-                    b.Property<string>("NumControl")
+                    b.Property<string>("Nombre")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -93,7 +93,7 @@ namespace ApiTest.Migrations
                 {
                     b.HasOne("ApiTest.Venta", "Venta")
                         .WithMany()
-                        .HasForeignKey("VentaId_Ven")
+                        .HasForeignKey("Id_Ven")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

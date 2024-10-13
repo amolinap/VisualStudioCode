@@ -43,33 +43,42 @@ namespace ApiTest.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Venta>> Post(DetalleVenta detalleVenta)
+        public async Task<ActionResult<ICollection<Producto>>> Post(ICollection<Producto> detalleVenta)
         {
-            Venta venta = new Venta();
+            //Venta venta = new Venta();
             DetalleVenta detalle = new DetalleVenta();
 
-            venta.Id_Ven = detalleVenta.Venta.Id_Ven;
+            //venta.Id_Ven = detalleVenta.Id_Ven;
 
             double total = 0;
 
-            foreach(int id_pro in detalleVenta.Productos)
+            foreach(Producto id_pro in detalleVenta)
             {
-                var producto = await _context.Productos.FindAsync(id_pro);
+                var producto = await _context.Productos.FindAsync(id_pro.Id_Pro);
 
                 if(producto != null)
                 {
+                    //detalle.Producto = producto;
                     detalle.Productos.Add(producto.Id_Pro);
                     total += producto.Precio;
+
+                    //_context.Add(detalle);
+                    //_context.Entry(detalle.Venta).State = EntityState.Unchanged;
+                    //await _context.SaveChangesAsync();
                 }
             }
             //detalle.Productos = detalleVenta.Productos;
-            venta.Total = total;
+            detalle.Venta.Total = total;
 
-            _context.Add(venta);
+            //_context.Add(venta);
+
+            //detalle.Venta.Id_Ven = venta.Id_Ven;
+
             _context.Add(detalle);
             await _context.SaveChangesAsync();
 
-            return new CreatedAtRouteResult("GetProducto", new {id=venta.Id_Ven}, venta);
+            //return new CreatedAtRouteResult("GetProducto", new {id=venta.Id_Ven}, venta);
+            return new CreatedAtRouteResult("GetDetalleVenta", new {id=detalle.Id_Det}, detalle);
         }
     }
 }
