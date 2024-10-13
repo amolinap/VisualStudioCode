@@ -12,6 +12,8 @@ namespace ApiTest
 
         public required string NumSerie { get; set; }
 
+        public double Precio { get; set; }
+
         public int Status { get; set; }
 
     }

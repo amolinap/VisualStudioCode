@@ -2,6 +2,7 @@
 using ApiTest;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -10,9 +11,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace ApiTest.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20241012233114_TablaDetalleVenta")]
+    partial class TablaDetalleVenta
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -29,16 +32,12 @@ namespace ApiTest.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Det"));
 
-                    b.Property<int[]>("Productos")
-                        .IsRequired()
-                        .HasColumnType("integer[]");
-
-                    b.Property<int>("VentaId_Ven")
+                    b.Property<int>("Id_Ven")
                         .HasColumnType("integer");
 
                     b.HasKey("Id_Det");
 
-                    b.HasIndex("VentaId_Ven");
+                    b.HasIndex("Id_Ven");
 
                     b.ToTable("DetalleVenta");
                 });
@@ -46,10 +45,7 @@ namespace ApiTest.Migrations
             modelBuilder.Entity("ApiTest.Producto", b =>
                 {
                     b.Property<int>("Id_Pro")
-                        .ValueGeneratedOnAdd()
                         .HasColumnType("integer");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id_Pro"));
 
                     b.Property<string>("NumControl")
                         .IsRequired()
@@ -93,11 +89,25 @@ namespace ApiTest.Migrations
                 {
                     b.HasOne("ApiTest.Venta", "Venta")
                         .WithMany()
-                        .HasForeignKey("VentaId_Ven")
+                        .HasForeignKey("Id_Ven")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Venta");
+                });
+
+            modelBuilder.Entity("ApiTest.Producto", b =>
+                {
+                    b.HasOne("ApiTest.DetalleVenta", null)
+                        .WithMany("Producto")
+                        .HasForeignKey("Id_Pro")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("ApiTest.DetalleVenta", b =>
+                {
+                    b.Navigation("Producto");
                 });
 #pragma warning restore 612, 618
         }

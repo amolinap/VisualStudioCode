@@ -43,9 +43,30 @@ namespace ApiTest.Controllers
         }
 
         [HttpPost]
-        public async Task<ActionResult<Venta>> Post(Venta venta)
+        public async Task<ActionResult<Venta>> Post(DetalleVenta detalleVenta)
         {
+            Venta venta = new Venta();
+            DetalleVenta detalle = new DetalleVenta();
+
+            venta.Id_Ven = detalleVenta.Venta.Id_Ven;
+
+            double total = 0;
+
+            foreach(int id_pro in detalleVenta.Productos)
+            {
+                var producto = await _context.Productos.FindAsync(id_pro);
+
+                if(producto != null)
+                {
+                    detalle.Productos.Add(producto.Id_Pro);
+                    total += producto.Precio;
+                }
+            }
+            //detalle.Productos = detalleVenta.Productos;
+            venta.Total = total;
+
             _context.Add(venta);
+            _context.Add(detalle);
             await _context.SaveChangesAsync();
 
             return new CreatedAtRouteResult("GetProducto", new {id=venta.Id_Ven}, venta);

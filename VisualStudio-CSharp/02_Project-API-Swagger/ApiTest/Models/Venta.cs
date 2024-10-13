@@ -1,5 +1,6 @@
 using System;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace ApiTest
 {
@@ -11,8 +12,6 @@ namespace ApiTest
         public double Total { get; set; }
 
         public int Status { get; set; }
-
-        public virtual ICollection<Producto> Producto { get; set; }
 
     }
 }
